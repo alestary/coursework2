@@ -4,9 +4,7 @@ class Vacancy:
     """
 
     def __init__(self, title: str, link: str, salary: dict | None, description: str):
-        """
-        Инициализация вакансии.
-        """
+        """ Инициализация вакансии. """
         self.title = title
         self.link = link
         self.salary = salary
@@ -14,9 +12,7 @@ class Vacancy:
         self._salary = self._parse_salary(salary)
 
     def _parse_salary(self, salary: dict | None) -> int:
-        """
-        Преобразует словарь зарплаты в одно значение (среднее) для сравнения.
-        """
+        """Преобразует словарь зарплаты в одно значение (среднее) для сравнения. """
         if not salary:
             return 0
         _from = salary.get("from")
@@ -26,9 +22,7 @@ class Vacancy:
         return _from or _to or 0
 
     def to_dict(self) -> dict:
-        """
-        Преобразует объект вакансии в словарь для JSON-сохранения.
-        """
+        """ Преобразует объект вакансии в словарь для JSON-сохранения. """
         return {
             "title": self.title,
             "link": self.link,
@@ -37,12 +31,10 @@ class Vacancy:
         }
 
     def __eq__(self, other):
-        """
-        Сравнение вакансий по зарплате или названию.
+        """ Сравнение вакансий по зарплате или названию.
 
         :param other: Vacancy или str/int
-        :return: bool
-        """
+        :return: bool """
         if isinstance(other, Vacancy):
             return self._salary == other._salary
         if isinstance(other, (int, float)):
@@ -58,4 +50,5 @@ class Vacancy:
         return NotImplemented
 
     def __repr__(self):
+        """Выводит вакансию по шаблону"""
         return f"Vacancy('{self.title}', salary={self._salary})"

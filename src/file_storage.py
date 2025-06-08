@@ -45,9 +45,7 @@ class JSONStorage(FileStorage):
             self._save(data)
 
     def get_vacancies(self) -> list[Vacancy]:
-        """
-        Возвращает список всех вакансий.
-        """
+        """ Возвращает список всех вакансий."""
         data = self._load()
         result = []
         for v in data:
@@ -55,17 +53,13 @@ class JSONStorage(FileStorage):
         return result
 
     def delete_vacancy(self, title: str):
-        """
-        Удаляет вакансию по названию.
-        """
+        """ Удаляет вакансию по названию. """
         data = self._load()
         new_data = [item for item in data if isinstance(item, dict) and item.get("title") != title]
         self._save(new_data)
 
     def get_vacancies_by_description(self, keyword: str) -> list[Vacancy]:
-        """
-        Возвращает список вакансий, в описании которых содержится ключевое слово.
-        """
+        """ Возвращает список вакансий, в описании которых содержится ключевое слово. """
         data = self._load()
         filtered = []
         for item in data:
